@@ -16,9 +16,16 @@ exports.signup = (req, res) => {
     }
   });
   User.create({
-    name: req.body.name,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
+    password: bcrypt.hashSync(req.body.password, 10),
+    name: req.body.name,
+    lastName: req.body.lastName,
+    country: req.body.country,
+    city: req.body.city,
+    phone: req.body.phone,
+    language: req.body.language,
+    industry: req.body.industry,
+    facebookLink: req.body.facebookLink,
     image: `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`,
   })
     .then((result) => {
