@@ -10,6 +10,7 @@ function authJwt() {
       { url: /\/upload(.*)/, method: ["GET", "OPTIONS"] },
       "/User/login",
       "/User/register",
+      "/",
     ],
   });
 }

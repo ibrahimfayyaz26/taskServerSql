@@ -41,7 +41,7 @@ db.sync()
     });
   })
   .catch((err) => {
-    // console.log(err);
+    console.log(err);
   });
 
 // set port, listen for requests
