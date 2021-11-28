@@ -5,6 +5,7 @@ const {
   signin,
   signup,
   getAllUsers,
+  findByID,
 } = require("../controllers/User.controller");
 
 router.get("/", (req, res) => {
@@ -15,8 +16,12 @@ router.post("/login", (req, res) => {
   signin(req, res);
 });
 
-router.post("/register", upload.single("image"), async (req, res) => {
+router.post("/register", async (req, res) => {
   signup(req, res);
+});
+
+router.get("/:id", (req, res) => {
+  findByID(req,res)
 });
 
 module.exports = router;

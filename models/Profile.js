@@ -1,32 +1,39 @@
 const db = require("../db/db");
 const { DataTypes } = require("sequelize");
 
-const Payment = db.define("Payment", {
+const Profile = db.define("Profile", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    allowNull: false,
     autoIncrement: true,
-  },
-  businessName: {
-    type: DataTypes.STRING,
     allowNull: false,
   },
-  businessWebsite: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  cardNumber: {
+  phone: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  passport: {
+  documents: {
+    type: DataTypes.STRING,
+  },
+  city: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  idCard: {
+  country: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  language: {
+    type: DataTypes.STRING,
+  },
+  industry: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  facebookLink: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
-module.exports = Payment;
+module.exports = Profile;

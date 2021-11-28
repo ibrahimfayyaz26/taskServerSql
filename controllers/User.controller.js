@@ -20,13 +20,6 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 10),
     name: req.body.name,
     lastName: req.body.lastName,
-    country: req.body.country,
-    city: req.body.city,
-    phone: req.body.phone,
-    language: req.body.language,
-    industry: req.body.industry,
-    facebookLink: req.body.facebookLink,
-    image: `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`,
   })
     .then((result) => {
       res.send({ message: "User was registered successfully!" });
@@ -62,10 +55,9 @@ exports.signin = (req, res) => {
         expiresIn: "1w",
       });
       res.status(200).send({
-        id: user.id,
-        name: user.name,
         email: user.email,
-        image: user.image,
+        name: user.name,
+        lastName: user.lastName,
         token: token,
       });
     })
@@ -81,5 +73,22 @@ exports.getAllUsers = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
+    });
+};
+
+exports.findByID = (req, res) => {
+  User.findByPk(req.params.id)
+    .then((user) => {
+      res.status(200).send({
+        email: user.email,
+        name: user.name,
+        lastName: user.lastName,
+      });
+    })
+    .catch((err) => {
+      res.status(400).send({
+        message: "User not found",
+        error: err,
+      });
     });
 };

@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   getAllPayments(req, res);
 });
 
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", upload.fields([{ name: 'passport'}, { name: 'idCard' }]),(req, res) => {
   createPayment(req, res);
 });
 

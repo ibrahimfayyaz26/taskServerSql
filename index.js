@@ -4,8 +4,10 @@ const cors = require("cors");
 const db = require("./db/db");
 const User = require("./models/User");
 const Payment = require("./models/Payment");
+const Profile = require("./models/Profile");
 const UserRoute = require("./Routes/User");
 const PaymentRoute = require("./Routes/Payment");
+const ProfileRoute = require("./Routes/Profile");
 const auth = require('./middleware/auth');
 require("dotenv/config");
 
@@ -27,6 +29,7 @@ app.use("/upload", express.static(__dirname + "/upload"));
 //Routers Use
 app.use("/User", UserRoute);
 app.use("/Payment", PaymentRoute);
+app.use("/Profile", ProfileRoute);
 
 // simple route
 app.get("/", (req, res) => {
