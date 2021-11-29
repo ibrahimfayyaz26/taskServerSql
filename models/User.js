@@ -33,7 +33,7 @@ const User = db.define("User", {
     defaultValue: "",
   },
   cardNumber: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT(25),
     defaultValue: 0
   },
   passport: {
@@ -45,11 +45,11 @@ const User = db.define("User", {
     defaultValue: "",
   },
   phone: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT(15),
     defaultValue: 0
   },
   documents: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON(5555555),
     defaultValue: "",
   },
   city: {

@@ -1,15 +1,15 @@
 const Profile = require("../models/User");
 
 exports.createProfile = (req, res) => {
-  let Images = "";
+  let Images = [];
 
   const fileName = req.files;
 
   if (fileName) {
     fileName.map(
       (fileT) =>
-        (Images = Images.concat(
-          `${req.protocol}://${req.get("host")}/upload/${fileT.filename},,,,`
+        (Images.push(
+          `${req.protocol}://${req.get("host")}/upload/${fileT.filename}`
         ))
     );
   }
@@ -33,7 +33,7 @@ exports.createProfile = (req, res) => {
         language: r.language,
         industry: r.industry,
         facebookLink: r.facebookLink,
-        documents: r.documents.split(",,,,"),
+        documents: r.documents,
       });})
     })
     .catch((err) => {

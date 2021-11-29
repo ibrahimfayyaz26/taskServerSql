@@ -90,7 +90,7 @@ exports.findByID = (req, res) => {
   User.findByPk(req.params.id)
     .then((user) => {
       res.status(200).send({
-        user
+      user
       });
     })
     .catch((err) => {
