@@ -21,8 +21,17 @@ exports.signup = (req, res) => {
     name: req.body.name,
     lastName: req.body.lastName,
   })
-    .then((result) => {
-      res.send({ message: "User was registered successfully!" });
+    .then((user) => {
+      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
+        expiresIn: "1w",
+      });
+      res.status(200).send({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        lastName: user.lastName,
+        token: token,
+      });
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
@@ -51,10 +60,11 @@ exports.signin = (req, res) => {
         });
       }
 
-      var token = jwt.sign({ id: user.id }, process.env.SECRET, {
+      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
         expiresIn: "1w",
       });
       res.status(200).send({
+        id: user.id,
         email: user.email,
         name: user.name,
         lastName: user.lastName,
@@ -80,9 +90,7 @@ exports.findByID = (req, res) => {
   User.findByPk(req.params.id)
     .then((user) => {
       res.status(200).send({
-        email: user.email,
-        name: user.name,
-        lastName: user.lastName,
+        user
       });
     })
     .catch((err) => {

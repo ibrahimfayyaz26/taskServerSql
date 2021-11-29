@@ -5,8 +5,11 @@ const {
   createProfile,
 } = require("../controllers/Profile.controller");
 
-router.post("/", upload.array("documents"),(req, res) => {
+router.put("/:id", upload.array("documents"),(req, res) => {
+  // console.log("hello")
   createProfile(req, res);
 });
+
+
 
 module.exports = router;

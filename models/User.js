@@ -20,35 +20,58 @@ const User = db.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  // phone: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  // },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  // degree1: {
-  //   type: DataTypes.STRING,
-  // },
-  // degree: {
-  //   type: DataTypes.STRING,
-  // },
-  // city: {
-  //   type: DataTypes.STRING,
-  // },
-  // country: {
-  //   type: DataTypes.STRING,
-  // },
-  // language: {
-  //   type: DataTypes.STRING,
-  // },
-  // industry: {
-  //   type: DataTypes.STRING,
-  // },
-  // facebookLink: {
-  //   type: DataTypes.STRING,
-  // },
+  businessName: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  businessWebsite: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  cardNumber: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  },
+  passport: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  idCard: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  phone: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  },
+  documents: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  city: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  country: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  language: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  industry: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
+  facebookLink: {
+    type: DataTypes.STRING,
+    defaultValue: "",
+  },
 });
 
 module.exports = User;

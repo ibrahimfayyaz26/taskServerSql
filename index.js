@@ -3,8 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./db/db");
 const User = require("./models/User");
-const Payment = require("./models/Payment");
-const Profile = require("./models/Profile");
 const UserRoute = require("./Routes/User");
 const PaymentRoute = require("./Routes/Payment");
 const ProfileRoute = require("./Routes/Profile");
@@ -14,6 +12,7 @@ require("dotenv/config");
 
 const app = express();
 
+app.use(auth());
 app.use(cors());
 app.use("*", cors());
 
@@ -23,7 +22,6 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(auth());
 app.use("/upload", express.static(__dirname + "/upload"));
 
 //Routers Use

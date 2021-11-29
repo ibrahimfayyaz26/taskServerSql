@@ -1,4 +1,4 @@
-const Profile = require("../models/Profile");
+const Profile = require("../models/User");
 
 exports.createProfile = (req, res) => {
   let Images = "";
@@ -13,7 +13,7 @@ exports.createProfile = (req, res) => {
         ))
     );
   }
-  Profile.create({
+  Profile.update({
     country: req.body.country,
     city: req.body.city,
     phone: req.body.phone,
@@ -22,9 +22,11 @@ exports.createProfile = (req, res) => {
     facebookLink: req.body.facebookLink,
     // documents: `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`,
     documents: Images,
-  })
-    .then((r) => {
-      res.send({
+  }, { where: { id: req.params.id } })
+    .then(() => {
+      Profile.findByPk(req.params.id).then((r)=>{res.send({
+        id:r.id,
+        email:r.email,
         country: r.country,
         city: r.city,
         phone: r.phone,
@@ -32,9 +34,11 @@ exports.createProfile = (req, res) => {
         industry: r.industry,
         facebookLink: r.facebookLink,
         documents: r.documents.split(",,,,"),
-      });
+      });})
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+
