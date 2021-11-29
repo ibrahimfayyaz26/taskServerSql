@@ -7,12 +7,8 @@ exports.createPayment = async (req, res) => {
       businessName: req.body.businessName,
       businessWebsite: req.body.businessWebsite,
       cardNumber: req.body.cardNumber,
-      passport: `${req.protocol}://${req.get("host")}/upload/${
-        req.files.passport[0].filename
-      }`,
-      idCard: `${req.protocol}://${req.get("host")}/upload/${
-        req.files.idCard[0].filename
-      }`,
+      passport: `${req.protocol}://${req.get("host")}/upload/${req.files.passport[0].filename}`,
+      idCard: `${req.protocol}://${req.get("host")}/upload/${req.files.idCard[0].filename}`,
     },
     { where: { id: req.params.id } }
   )
