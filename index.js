@@ -6,12 +6,13 @@ const User = require("./models/User");
 const UserRoute = require("./Routes/User");
 const PaymentRoute = require("./Routes/Payment");
 const ProfileRoute = require("./Routes/Profile");
-const auth = require('./middleware/auth');
+const auth = require("./middleware/auth");
+const morgan = require("morgan");
 require("dotenv/config");
-
 
 const app = express();
 
+app.use(morgan("dev"));
 app.use(auth());
 app.use(cors());
 app.use("*", cors());
@@ -20,7 +21,11 @@ app.use("*", cors());
 app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.use("/upload", express.static(__dirname + "/upload"));
 
@@ -45,4 +50,14 @@ db.sync()
     console.log(err);
   });
 
+process.on("SIGINT", async function () {
+  console.log("SIGINT Shutdown received.");
+  process.exit(0);
+});
+
+// //Terminate active connection on kill
+process.on("SIGTERM", async function () {
+  console.log("SIGTERM Shutdown received.");
+  process.exit(0);
+});
 // set port, listen for requests

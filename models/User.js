@@ -26,51 +26,39 @@ const User = db.define("User", {
   },
   businessName: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   businessWebsite: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   cardNumber: {
-    type: DataTypes.BIGINT(25),
-    defaultValue: 0
+    type: DataTypes.STRING,
   },
   passport: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   idCard: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   phone: {
-    type: DataTypes.BIGINT(15),
-    defaultValue: 0
+    type: DataTypes.STRING,
   },
   documents: {
     type: DataTypes.JSON(5555555),
-    defaultValue: "",
   },
   city: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   country: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   language: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   industry: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
   facebookLink: {
     type: DataTypes.STRING,
-    defaultValue: "",
   },
 });
 
