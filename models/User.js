@@ -1,5 +1,7 @@
 const db = require("../db/db");
-const { DataTypes } = require("sequelize");
+const {
+  DataTypes
+} = require("sequelize");
 
 const User = db.define("User", {
   id: {
@@ -26,39 +28,50 @@ const User = db.define("User", {
   },
   businessName: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   businessWebsite: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   cardNumber: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   passport: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   idCard: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   phone: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   documents: {
     type: DataTypes.JSON(5555555),
   },
   city: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   country: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   language: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   industry: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
   facebookLink: {
     type: DataTypes.STRING,
+    defaultValue: "",
   },
 });
 
