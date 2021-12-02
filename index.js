@@ -6,6 +6,7 @@ const User = require("./models/User");
 const UserRoute = require("./Routes/User");
 const PaymentRoute = require("./Routes/Payment");
 const ProfileRoute = require("./Routes/Profile");
+const DocumentsRoute = require("./Routes/Documents");
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
@@ -15,7 +16,6 @@ const app = express();
 app.use(morgan("dev"));
 app.use(auth());
 app.use(cors());
-app.use("*", cors());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -33,6 +33,7 @@ app.use("/upload", express.static(__dirname + "/upload"));
 app.use("/User", UserRoute);
 app.use("/Payment", PaymentRoute);
 app.use("/Profile", ProfileRoute);
+app.use("/Documents", DocumentsRoute);
 
 // simple route
 app.get("/", (req, res) => {

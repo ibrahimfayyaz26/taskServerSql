@@ -4,14 +4,12 @@ const {
   upload
 } = require("../config/Multer");
 const {
-  createProfile,
+  createProfile
 } = require("../controllers/Profile.controller");
 
-router.put("/:id", upload.array("documents"), (req, res) => {
+router.put("/:id", (req, res) => {
   // console.log("hello")
   createProfile(req, res);
 });
-
-
 
 module.exports = router;

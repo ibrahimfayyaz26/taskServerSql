@@ -52,6 +52,7 @@ const User = db.define("User", {
   },
   documents: {
     type: DataTypes.JSON(5555555),
+    defaultValue: []
   },
   city: {
     type: DataTypes.STRING,
