@@ -18,6 +18,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(auth());
 app.use(cors());
+app.options("*",cors())
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
