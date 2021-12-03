@@ -1,22 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { upload } = require("../config/Multer");
 const { createPayment } = require("../controllers/Payment.controller");
 
-router.put(
-  "/:id",
-  upload.fields([
-    {
-      name: "passport",
-    },
-    {
-      name: "idCard",
-    },
-  ]),
-  cors(),
-  (req, res) => {
-    createPayment(req, res);
-  }
-);
+router.put("/:id", (req, res) => {
+  createPayment(req, res);
+});
 
 module.exports = router;

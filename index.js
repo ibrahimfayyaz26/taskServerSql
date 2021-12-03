@@ -7,6 +7,8 @@ const UserRoute = require("./Routes/User");
 const PaymentRoute = require("./Routes/Payment");
 const ProfileRoute = require("./Routes/Profile");
 const DocumentsRoute = require("./Routes/Documents");
+const IdCardRoute = require("./Routes/IdCard");
+const PassportRoute = require("./Routes/Passport");
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
@@ -34,6 +36,9 @@ app.use("/User", UserRoute);
 app.use("/Payment", PaymentRoute);
 app.use("/Profile", ProfileRoute);
 app.use("/Documents", DocumentsRoute);
+app.use("/IdCard", IdCardRoute);
+app.use("/Passport", PassportRoute);
+
 
 // simple route
 app.get("/", (req, res) => {
