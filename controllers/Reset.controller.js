@@ -3,6 +3,8 @@ const Reset = require("../models/ResetPassword");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+var sgTransport = require('nodemailer-sendgrid-transport');
+
 
 
 exports.forget = async(req, res) => {
@@ -39,20 +41,18 @@ exports.forget = async(req, res) => {
         token: token,
     });
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'ibrahimfayyaz9700@gmail.com',
-          pass: 'Fayyaz9700'
+    var transporter = nodemailer.createTransport( sgTransport({
+        auth:{
+            api_key:"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"
         }
-      });
+    }));
 
     var mailOptions = {
-        from: "Server@gmail.com",
+        from: "ibrahimfayyaz26@gmail.com",
         to: req.body.email,
         subject: "Reset Password",
         text:
-          `To reset your password, please click the link below. Url not created yet token:${token} email:${req.body.email}`
+          `To reset your password, please click the link below. Url not created yet token: ${token} email:${req.body.email}`
     };
 
     transporter.sendMail(mailOptions).then(() => {
