@@ -27,7 +27,6 @@ exports.createProfile = (req, res) => {
     })
     .then(() => {
       Profile.findByPk(req.params.id).then((r) => {
-        console.log(r)
         res.send({
           id: r.id,
           email: r.email,
@@ -41,8 +40,9 @@ exports.createProfile = (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({
-        message: err.message
+      res.send({
+        message: err.message,
+        msg:"request failed"
       });
     });
 };

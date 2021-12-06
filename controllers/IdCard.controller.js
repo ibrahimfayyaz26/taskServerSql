@@ -6,8 +6,9 @@ exports.IdCardGet = (req,res)=>{
       idCard: r.idCard,
     });
   }).catch((err) => {
-    res.status(500).send({
+    res.send({
       message: err.message,
+      msg:"request failed"
     });
   });
 }
@@ -33,8 +34,9 @@ exports.IdCardController = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.send({
         message: err.message,
+        msg:"request failed"
       });
     });
 };
@@ -57,8 +59,9 @@ exports.IdCardDelete = async (req, res) => {
       
     })
     .catch((err) => {
-      res.status(500).send({
+      res.send({
         message: err.message,
+        msg:"request failed"
       });
     });
 };

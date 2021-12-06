@@ -11,6 +11,8 @@ function authJwt() {
       "/User/login",
       "/User/register",
       "/",
+      "/ResetPassword",
+      "/ResetPassword/Change",
     ],
   });
 }

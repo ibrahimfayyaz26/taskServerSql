@@ -6,8 +6,9 @@ exports.DocumentsGet = (req,res)=>{
       documents: r.documents,
     });
   }).catch((err) => {
-    res.status(500).send({
+    res.send({
       message: err.message,
+      msg:"request failed"
     });
   });
 }
@@ -45,8 +46,9 @@ exports.DocumentsController = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.send({
         message: err.message,
+        msg:"request failed"
       });
     });
 };
@@ -72,8 +74,9 @@ exports.DocumentsDelete = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.send({
         message: err.message,
+        msg:"request failed"
       });
     });
 };

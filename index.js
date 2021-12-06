@@ -9,6 +9,7 @@ const ProfileRoute = require("./Routes/Profile");
 const DocumentsRoute = require("./Routes/Documents");
 const IdCardRoute = require("./Routes/IdCard");
 const PassportRoute = require("./Routes/Passport");
+const ResetPasswordRoute = require("./Routes/ResetPassword");
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
@@ -18,7 +19,18 @@ const app = express();
 app.use(morgan("dev"));
 app.use(auth());
 app.use(cors());
-app.options("*",cors())
+app.options("*", cors())
+
+//Error
+app.use(
+  function(err, req, res, next) {
+    if (err.name === "UnauthorizedError") {
+      // jwt authentication error
+      return res.status(401).json({
+        message: "The user is not authorized"
+      });
+    }
+  })
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -39,6 +51,7 @@ app.use("/Profile", ProfileRoute);
 app.use("/Documents", DocumentsRoute);
 app.use("/IdCard", IdCardRoute);
 app.use("/Passport", PassportRoute);
+app.use("/ResetPassword",ResetPasswordRoute)
 
 
 // simple route

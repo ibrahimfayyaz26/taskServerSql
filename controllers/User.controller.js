@@ -34,7 +34,10 @@ exports.signup = (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message });
+      res.send({
+        message: err.message,
+        msg:"request failed"
+      });
     });
 };
 
@@ -72,7 +75,10 @@ exports.signin = (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message });
+      res.send({
+        message: err.message,
+        msg:"request failed"
+      });
     });
 };
 
@@ -82,7 +88,10 @@ exports.getAllUsers = (req, res) => {
       res.send({ users: result });
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message });
+      res.send({
+        message: err.message,
+        msg:"request failed"
+      });
     });
 };
 
@@ -94,9 +103,9 @@ exports.findByID = (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(400).send({
-        message: "User not found",
-        error: err,
+      res.send({
+        message: err.message,
+        msg:"request failed"
       });
     });
 };
