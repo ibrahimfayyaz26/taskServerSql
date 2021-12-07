@@ -43,16 +43,16 @@ exports.forget = async(req, res) => {
 
     var transporter = nodemailer.createTransport( sgTransport({
         auth:{
-            api_key:"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"
+            api_key:"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"
         }
     }));
 
     var mailOptions = {
-        from: "ibrahimfayyaz26@gmail.com",
+        from: "ibrahimfayyazwork26@gmail.com",
         to: req.body.email,
         subject: "Reset Password",
         text:
-          `To reset your password, please click the link below. Url not created yet token: ${token} email:${req.body.email}`
+          `To reset your password, please click the link below.\n\nhttps://www.fairtradingpost.org/resetpassword` +'?token=' + token + '&email=' + req.body.email
     };
 
     transporter.sendMail(mailOptions).then(() => {
