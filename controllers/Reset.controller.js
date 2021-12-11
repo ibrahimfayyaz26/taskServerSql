@@ -3,7 +3,6 @@ const Reset = require("../models/ResetPassword");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-var sgTransport = require('nodemailer-sendgrid-transport');
 
 
 
@@ -41,14 +40,16 @@ exports.forget = async(req, res) => {
         token: token,
     });
 
-    var transporter = nodemailer.createTransport( sgTransport({
-        auth:{
-            api_key:"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"
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'ibrahimfayyaz9700@gmail.com',
+          pass: 'Fayyaz9700'
         }
-    }));
+      });
 
     var mailOptions = {
-        from: "ibrahimfayyazwork26@gmail.com",
+        from: "ibrahimfayyaz9700@gmail.com",
         to: req.body.email,
         subject: "Reset Password",
         text:

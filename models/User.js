@@ -63,12 +63,12 @@ const User = db.define("User", {
     defaultValue: "",
   },
   language: {
-    type: DataTypes.STRING,
-    defaultValue: "",
+    type: DataTypes.JSON(5555555),
+    defaultValue: []
   },
   industry: {
-    type: DataTypes.STRING,
-    defaultValue: "",
+    type: DataTypes.JSON(5555555),
+    defaultValue: []
   },
   facebookLink: {
     type: DataTypes.STRING,

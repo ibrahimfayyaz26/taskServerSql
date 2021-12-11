@@ -17,8 +17,8 @@ exports.createProfile = (req, res) => {
       country: req.body.country,
       city: req.body.city,
       phone: req.body.phone,
-      language: req.body.language,
-      industry: req.body.industry,
+      language: {lang:req.body.language},
+      industry: {indus:req.body.industry},
       facebookLink: req.body.facebookLink,
     }, {
       where: {
