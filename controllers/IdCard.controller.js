@@ -6,7 +6,7 @@ exports.IdCardGet = (req,res)=>{
       idCard: r.idCard,
     });
   }).catch((err) => {
-    res.send({
+    res.status(400).send({
       message: err.message,
       msg:"request failed"
     });
@@ -34,7 +34,7 @@ exports.IdCardController = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });
@@ -59,7 +59,7 @@ exports.IdCardDelete = async (req, res) => {
       
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });

@@ -34,7 +34,7 @@ exports.signup = (req, res) => {
       });
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });
@@ -58,7 +58,7 @@ exports.signin = (req, res) => {
       );
 
       if (!passwordIsValid) {
-        return res.status(401).send({
+        return res.status(400).send({
           message: "Invalid Password!",
         });
       }
@@ -88,7 +88,7 @@ exports.getAllUsers = (req, res) => {
       res.send({ users: result });
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });
@@ -103,7 +103,7 @@ exports.findByID = (req, res) => {
       });
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });

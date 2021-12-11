@@ -6,7 +6,7 @@ exports.PassportGet = (req,res)=>{
       passport: r.passport,
     });
   }).catch((err) => {
-    res.send({
+    res.status(400).send({
       message: err.message,
       msg:"request failed"
     });
@@ -34,7 +34,7 @@ exports.PassportController = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });
@@ -59,7 +59,7 @@ exports.PassportDelete = async (req, res) => {
       
     })
     .catch((err) => {
-      res.send({
+      res.status(400).send({
         message: err.message,
         msg:"request failed"
       });
