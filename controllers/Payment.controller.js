@@ -23,8 +23,8 @@ exports.createPayment = async (req, res) => {
     })
     .catch((err) => {
       res.status(400).send({
-        message: err.message,
-        msg:"request failed"
+        message: new Error(err.message),
+        msg:err.message
       });
     });
 };

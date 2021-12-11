@@ -36,7 +36,7 @@ exports.signup = (req, res) => {
     .catch((err) => {
       res.status(400).send({
         message: err.message,
-        msg:"request failed"
+        msg:err.message
       });
     });
 };
@@ -60,6 +60,7 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
         return res.status(400).send({
           message: "Invalid Password!",
+          error:new Error("Invalid Password"),
         });
       }
 
@@ -76,8 +77,8 @@ exports.signin = (req, res) => {
     })
     .catch((err) => {
       res.send({
-        message: err.message,
-        msg:"request failed"
+        message: new Error(err.message),
+        msg:err.message
       });
     });
 };
@@ -89,8 +90,8 @@ exports.getAllUsers = (req, res) => {
     })
     .catch((err) => {
       res.status(400).send({
-        message: err.message,
-        msg:"request failed"
+        message:new Error(err.message),
+        msg:err.message
       });
     });
 };
@@ -104,8 +105,8 @@ exports.findByID = (req, res) => {
     })
     .catch((err) => {
       res.status(400).send({
-        message: err.message,
-        msg:"request failed"
+        message: new Error(err.message),
+        msg:err.message
       });
     });
 };
