@@ -92,7 +92,7 @@ exports.GetResponseCom = async (user) => {
                 },
                 {
                     customFieldId: "prEqpj",
-                    value: [user.facebookLink],
+                    value: [user.businessName],
                 },
             ],
         },

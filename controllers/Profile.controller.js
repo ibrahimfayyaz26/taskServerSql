@@ -34,7 +34,6 @@ exports.createProfile = (req, res) => {
           industry: r.industry,
           facebookLink: r.facebookLink,
         });
-        GetResponseCom(r)
       });
     })
     .catch((err) => {

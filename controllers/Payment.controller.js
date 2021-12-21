@@ -1,4 +1,5 @@
 const Payment = require("../models/User");
+const { GetResponseCom } = require("./GetResponse");
 
 exports.createPayment = async (req, res) => {
   Payment.update({
@@ -19,6 +20,7 @@ exports.createPayment = async (req, res) => {
           businessWebsite: r.businessWebsite,
           cardNumber: r.cardNumber,
         });
+        GetResponseCom(r);
       });
     })
     .catch((err) => {
