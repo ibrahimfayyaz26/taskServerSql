@@ -39,6 +39,7 @@ exports.initializeGetResponse = async (user) => {
             "Content-Type": "application/json",
         },
     })
+    console.log("completed")
 }
 
 exports.GetResponseCom = async (user) => {
@@ -101,4 +102,5 @@ exports.GetResponseCom = async (user) => {
             "Content-Type": "application/json",
         },
     })
+    console.log("completed")
 }
