@@ -3,6 +3,7 @@ const Reset = require("../models/ResetPassword");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const { htm } = require("./format");
 
 
 
@@ -52,8 +53,7 @@ exports.forget = async(req, res) => {
         from: "ibrahimfayyaz9700@gmail.com",
         to: req.body.email,
         subject: "Reset Password",
-        text:
-          `To reset your password, please click the link below.\n\nhttps://www.fairtradingpost.org/resetpassword` +'?token=' + token + '&email=' + req.body.email
+        html:htm(token,req.body.email)
     };
 
     transporter.sendMail(mailOptions).then(() => {

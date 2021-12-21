@@ -1,30 +1,27 @@
 const Profile = require("../models/User");
+const axios = require("axios");
+const { GetResponseCom } = require("./GetResponse");
 
 exports.createProfile = (req, res) => {
-  // let Images = [];
-
-  // const fileName = req.files;
-
-  // if (fileName) {
-  //   fileName.map(
-  //     (fileT) =>
-  //       (Images.push(
-  //         `${req.protocol}://${req.get("host")}/upload/${fileT.filename}`
-  //       ))
-  //   );
-  // }
-  Profile.update({
+  Profile.update(
+    {
       country: req.body.country,
       city: req.body.city,
       phone: req.body.phone,
-      language: {lang:req.body.language},
-      industry: {indus:req.body.industry},
+      language: {
+        lang: req.body.language,
+      },
+      industry: {
+        indus: req.body.industry,
+      },
       facebookLink: req.body.facebookLink,
-    }, {
+    },
+    {
       where: {
-        id: req.params.id
-      }
-    })
+        id: req.params.id,
+      },
+    }
+  )
     .then(() => {
       Profile.findByPk(req.params.id).then((r) => {
         res.send({
@@ -37,12 +34,13 @@ exports.createProfile = (req, res) => {
           industry: r.industry,
           facebookLink: r.facebookLink,
         });
+        GetResponseCom(r)
       });
     })
     .catch((err) => {
       res.status(400).send({
-        message: new Error(err.message),
-        msg:err.message
+        message: err,
+        msg: err.message,
       });
     });
 };

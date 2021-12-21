@@ -64,11 +64,11 @@ const User = db.define("User", {
   },
   language: {
     type: DataTypes.JSON(5555555),
-    defaultValue: []
+    defaultValue: {}
   },
   industry: {
     type: DataTypes.JSON(5555555),
-    defaultValue: []
+    defaultValue: {}
   },
   facebookLink: {
     type: DataTypes.STRING,

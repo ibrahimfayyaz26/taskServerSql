@@ -1,6 +1,8 @@
 const User = require("../models/User");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const axios = require("axios");
+const { Checking, initializeGetResponse } = require("./GetResponse");
 
 exports.signup = (req, res) => {
   User.findOne({
@@ -21,10 +23,21 @@ exports.signup = (req, res) => {
     name: req.body.name,
     lastName: req.body.lastName,
   })
-    .then((user) => {
-      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: "1w",
-      });
+    .then(async (user) => {
+      const ch = await Checking(user);
+      if (ch) {
+        initializeGetResponse(user);
+      }
+
+      let token = jwt.sign(
+        {
+          id: user.id,
+        },
+        process.env.SECRET,
+        {
+          expiresIn: "1w",
+        }
+      );
       res.status(200).send({
         id: user.id,
         email: user.email,
@@ -36,7 +49,7 @@ exports.signup = (req, res) => {
     .catch((err) => {
       res.status(400).send({
         message: err.message,
-        msg:err.message
+        msg: err.message,
       });
     });
 };
@@ -49,7 +62,9 @@ exports.signin = (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: "email Not found." });
+        return res.status(404).send({
+          message: "email Not found.",
+        });
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -60,13 +75,19 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
         return res.status(400).send({
           message: "Invalid Password!",
-          error:new Error("Invalid Password"),
+          error: new Error("Invalid Password"),
         });
       }
 
-      let token = jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: "1w",
-      });
+      let token = jwt.sign(
+        {
+          id: user.id,
+        },
+        process.env.SECRET,
+        {
+          expiresIn: "1w",
+        }
+      );
       res.status(200).send({
         id: user.id,
         email: user.email,
@@ -78,7 +99,7 @@ exports.signin = (req, res) => {
     .catch((err) => {
       res.send({
         message: new Error(err.message),
-        msg:err.message
+        msg: err.message,
       });
     });
 };
@@ -86,12 +107,14 @@ exports.signin = (req, res) => {
 exports.getAllUsers = (req, res) => {
   User.findAll()
     .then((result) => {
-      res.send({ users: result });
+      res.send({
+        users: result,
+      });
     })
     .catch((err) => {
       res.status(400).send({
-        message:new Error(err.message),
-        msg:err.message
+        message: new Error(err.message),
+        msg: err.message,
       });
     });
 };
@@ -100,13 +123,13 @@ exports.findByID = (req, res) => {
   User.findByPk(req.params.id)
     .then((user) => {
       res.status(200).send({
-      user
+        user,
       });
     })
     .catch((err) => {
       res.status(400).send({
         message: new Error(err.message),
-        msg:err.message
+        msg: err.message,
       });
     });
 };
