@@ -109,18 +109,52 @@ exports.signin = (req, res) => {
 };
 
 exports.getAllUsers = (req, res) => {
-  User.findAll()
-    .then((result) => {
-      res.send({
-        users: result,
-      });
+  if(req.query.limit && !req.query.skip ){
+    User.findAll({
+      limit:parseInt(req.query.limit)
     })
-    .catch((err) => {
-      res.status(400).send({
-        message: new Error(err.message),
-        msg: err.message,
+      .then((result) => {
+        res.send({
+          users: result,
+        });
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: new Error(err.message),
+          msg: err.message,
+        });
       });
-    });
+  }else if(req.query.limit && req.query.skip){
+    User.findAll({
+      limit:parseInt(req.query.limit),
+      offset:parseInt(req.query.skip)
+    })
+      .then((result) => {
+        res.send({
+          users: result,
+        });
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: new Error(err.message),
+          msg: err.message,
+        });
+      });
+  }else if(!req.query.limit){
+    User.findAll()
+      .then((result) => {
+        res.send({
+          users: result,
+        });
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: new Error(err.message),
+          msg: err.message,
+        });
+      });
+  }
+
 };
 
 exports.findByID = (req, res) => {

@@ -10,6 +10,7 @@ const DocumentsRoute = require("./Routes/Documents");
 const IdCardRoute = require("./Routes/IdCard");
 const PassportRoute = require("./Routes/Passport");
 const ResetPasswordRoute = require("./Routes/ResetPassword");
+const AproveRoute = require("./Routes/Aprove")
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
@@ -52,6 +53,8 @@ app.use("/Documents", DocumentsRoute);
 app.use("/IdCard", IdCardRoute);
 app.use("/Passport", PassportRoute);
 app.use("/ResetPassword",ResetPasswordRoute)
+app.use("/Aprove",AproveRoute)
+
 
 
 // simple route

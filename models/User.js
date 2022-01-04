@@ -74,6 +74,12 @@ const User = db.define("User", {
     type: DataTypes.STRING,
     defaultValue: "",
   },
+  status:{
+    type:DataTypes.INTEGER,
+    defaultValue:0
+  }
 });
+
+// queryInterface.addColumn('User', 'status', DataTypes.BOOLEAN);
 
 module.exports = User;
