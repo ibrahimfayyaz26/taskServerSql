@@ -1,7 +1,7 @@
-const Aprove = require("../models/User");
+const Approve = require("../models/User");
 
-exports.AprovingGet = (req, res) => {
-  Aprove.findAll({
+exports.ApprovingGet = (req, res) => {
+  Approve.findAll({
       where: {
         status: 0,
       },
@@ -18,14 +18,14 @@ exports.AprovingGet = (req, res) => {
 };
 
 exports.ApproveController = async (req, res) => {
-  Aprove.update({
+  Approve.update({
     status: req.body.status,
   }, {
     where: {
       id: req.params.id,
     },
   }).then(async () => {
-    const data = await Aprove.findByPk(req.params.id);
+    const data = await Approve.findByPk(req.params.id);
     if (data && data.status == 2) {
       data.destroy();
       res.send(data);
@@ -35,8 +35,8 @@ exports.ApproveController = async (req, res) => {
   });
 };
 
-exports.AprovedGet = (req, res) => {
-  Aprove.findAll({
+exports.ApprovedGet = (req, res) => {
+  Approve.findAll({
       where: {
         status: 1,
       },

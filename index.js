@@ -10,7 +10,7 @@ const DocumentsRoute = require("./Routes/Documents");
 const IdCardRoute = require("./Routes/IdCard");
 const PassportRoute = require("./Routes/Passport");
 const ResetPasswordRoute = require("./Routes/ResetPassword");
-const AproveRoute = require("./Routes/Aprove")
+const ApproveRoute = require("./Routes/Approve")
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
@@ -53,7 +53,7 @@ app.use("/Documents", DocumentsRoute);
 app.use("/IdCard", IdCardRoute);
 app.use("/Passport", PassportRoute);
 app.use("/ResetPassword",ResetPasswordRoute)
-app.use("/Aprove",AproveRoute)
+app.use("/Approve",ApproveRoute)
 
 
 
@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
 db.sync()
   .then((result) => {
     const PORT = process.env.PORT || 1000;
-    app.listen(PORT, () => {
+    app.listen(3000, () => {
       console.log(`Server is running on port ${PORT}.`);
     });
   })

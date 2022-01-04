@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    AprovingGet,
+    ApprovingGet,
     ApproveController,
-    AprovedGet,
-} = require("../controllers/Aprove.controller");
+    ApprovedGet,
+} = require("../controllers/Approve.controller");
 
 router.get("/", (req, res) => {
-  AprovingGet(req, res);
+  ApprovingGet(req, res);
 });
 
-router.get("/aproved", (req, res) => {
-  AprovedGet(req, res);
+router.get("/approved", (req, res) => {
+  ApprovedGet(req, res);
 });
 
 
