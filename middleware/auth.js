@@ -8,6 +8,7 @@ function authJwt() {
   }).unless({
     path: [
       { url: /\/upload(.*)/, method: ["GET", "OPTIONS"] },
+      { url: /\/Wallet(.*)/, method: ["GET","POST","DELETE", "OPTIONS"] },
       "/User/login",
       "/User/register",
       "/",

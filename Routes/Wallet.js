@@ -1,4 +1,5 @@
 const express = require("express");
+const { getStakesAddress, createStake, deleteStake } = require("../controllers/Stake.controller");
 const router = express.Router();
 const {
   create,
@@ -13,6 +14,18 @@ router.post("/", (req, res) => {
 router.post("/create", (req, res) => {
   // Create Transaction
   create(req, res);
+});
+
+router.post("/stake", (req, res) => {
+  getStakesAddress(req, res);
+});
+
+router.post("/createStake", (req, res) => {
+  createStake(req, res);
+});
+
+router.delete("/stake/:id", (req, res) => {
+  deleteStake(req, res);
 });
 
 module.exports = router;
