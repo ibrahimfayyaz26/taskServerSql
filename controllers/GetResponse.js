@@ -4,13 +4,12 @@ const axios = require("axios");
 exports.Checking = async (user) => {
   const data = await axios({
     method: "get",
-    url: "https://api.getresponse.com/v3/contacts",
+    url: "https://api.getresponse.com/v3/campaigns/Z8UWT/contacts?perPage=100000000",
     headers: { 
       "X-Auth-Token": "api-key 2k2b6nc004oy2ska7n4qmendkt3itnod",
       "Content-Type": "application/json",
     },
-  });
-
+  });  
   const re = await data.data.find((q) => {
     return q.email == user.email;
   });
@@ -49,27 +48,26 @@ exports.initializeGetResponse = async (user) => {
 exports.GetResponseCom = async (user) => {
   const data = await axios({
     method: "get",
-    url: "https://api.getresponse.com/v3/contacts",
+    url: "https://api.getresponse.com/v3/campaigns/Z8UWT/contacts?perPage=100000000",
     headers: {
       "X-Auth-Token": "api-key 2k2b6nc004oy2ska7n4qmendkt3itnod",
       "Content-Type": "application/json",
     },
   });
-
+  const usr = user.dataValues;
   const re = await data.data.find((q) => {
-    return q.email == user.email;
+    return q.email == usr.email;
   });
   if (!re) {
     return false;
   }
-  // console.log(re)
   setTimeout(() => {
     axios({
       method: "post",
       url: `https://api.getresponse.com/v3/contacts/${re.contactId}`,
       data: {
-        email: user.email,
-        name: `${user.name} ${user.lastName}`,
+        email: usr.email,
+        name: `${usr.name} ${usr.lastName}`,
         campaign: {
           campaignId: "Z8UWT",
         },
@@ -81,28 +79,32 @@ exports.GetResponseCom = async (user) => {
         customFieldValues: [
           {
             customFieldId: "pzvJpS",
-            value: [user.country],
+            value: [usr.country  ||"  "],
           },
           {
             customFieldId: "pzvJ6c",
-            value: [user.city],
+            value: [usr.city  ||"  "],
           },
           {
-            customFieldId: "pzvJus",
-            value: [user.phone],
+            customFieldId: "pQz6Pd",
+            value: [usr.phone  ||"  "],
           },
           {
             customFieldId: "prAC5d",
-            value: [user.language.lang],
+            value: [usr.language.length ? usr.language.lang[0]: "  "],
           },
           {
             customFieldId: "pzvJMY",
-            value: [user.industry.indus],
+            value: [usr.industry.length ? usr.industry.indus[0]: "  "],
           },
           {
             customFieldId: "prEqpj",
-            value: [user.businessName],
+            value: [usr.businessName  ||"  "],
           },
+          {
+            customFieldId:"pQqlQf",
+            value:[usr.cardNumber ||"  "]
+          }
         ],
       },
       headers: {
@@ -111,5 +113,5 @@ exports.GetResponseCom = async (user) => {
       },
     });
     console.log("completed");
-  }, 5000);
+  }, 2000);
 };

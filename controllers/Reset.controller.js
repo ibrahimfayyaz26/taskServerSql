@@ -44,13 +44,13 @@ exports.forget = async(req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'ibrahimfayyaz9700@gmail.com',
-          pass: 'Fayyaz9700'
+          user: 'fairtrader.reset@gmail.com',
+          pass: '$fairtrader26'
         }
       });
 
     var mailOptions = {
-        from: "ibrahimfayyaz9700@gmail.com",
+        from: "fairtrader.reset@gmail.com",
         to: req.body.email,
         subject: "Reset Password",
         html:htm(token,req.body.email)

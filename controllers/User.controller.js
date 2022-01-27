@@ -1,8 +1,7 @@
 const User = require("../models/User");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const axios = require("axios");
-const { Checking, initializeGetResponse, GetResponseCom } = require("./GetResponse");
+const { Checking, initializeGetResponse} = require("./GetResponse");
 
 exports.signup = (req, res) => {
   User.findOne({
@@ -61,10 +60,6 @@ exports.signin = (req, res) => {
     },
   })
     .then(async(user) => {
-      const ch = await Checking(user);
-      if (ch) {
-        GetResponseCom(user)
-      }
       if (!user) {
         return res.status(404).send({
           message: "email Not found.",

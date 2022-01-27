@@ -2,18 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./db/db");
-const User = require("./models/User");
-const UserRoute = require("./Routes/User");
-const PaymentRoute = require("./Routes/Payment");
-const ProfileRoute = require("./Routes/Profile");
-const DocumentsRoute = require("./Routes/Documents");
-const IdCardRoute = require("./Routes/IdCard");
-const PassportRoute = require("./Routes/Passport");
-const ResetPasswordRoute = require("./Routes/ResetPassword");
-const ApproveRoute = require("./Routes/Approve")
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
+const {Models} = require("./models/Models");
+const {Routes} = require("./Routes/Routes");
 
 const app = express();
 
@@ -46,15 +39,15 @@ app.use(
 app.use("/upload", express.static(__dirname + "/upload"));
 
 //Routers Use
-app.use("/User", UserRoute);
-app.use("/Payment", PaymentRoute);
-app.use("/Profile", ProfileRoute);
-app.use("/Documents", DocumentsRoute);
-app.use("/IdCard", IdCardRoute);
-app.use("/Passport", PassportRoute);
-app.use("/ResetPassword",ResetPasswordRoute)
-app.use("/Approve",ApproveRoute)
-
+app.use("/User", Routes.User);
+app.use("/Payment", Routes.Payment);
+app.use("/Profile", Routes.Profile);
+app.use("/Documents", Routes.Documents);
+app.use("/IdCard", Routes.IdCard);
+app.use("/Passport", Routes.Passport);
+app.use("/ResetPassword",Routes.ResetPassword)
+app.use("/Approve",Routes.Approve)
+app.use("/Wallet",Routes.Wallet)
 
 
 // simple route
