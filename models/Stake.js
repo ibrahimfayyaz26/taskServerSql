@@ -13,15 +13,16 @@ const Stake = db.define("Stake", {
     bFTP: {
         type: DataTypes.FLOAT,
     },
-    FTP: {
-        type: DataTypes.FLOAT
+    releaseDate: {
+        type: DataTypes.STRING,
     },
-    releaseDate:{
-        type:DataTypes.STRING,
+    currentDate: {
+        type: DataTypes.STRING,
     },
-    timeSpan:{
-        type:DataTypes.STRING,
+    stakeNumber: {
+        type: DataTypes.INTEGER
     }
+
 })
 
 module.exports = Stake;

@@ -11,6 +11,10 @@ const Wallet = db.define("Wallet",{
     wallet:{
         type:DataTypes.STRING,
         allowNull:false
+    },
+    stakeNumber:{
+        type:DataTypes.INTEGER,
+        defaultValue:0
     }
 })
 

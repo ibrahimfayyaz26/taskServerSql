@@ -13,6 +13,7 @@ exports.create = async (req, res, next) => {
         bnb: req.body.bnb ? req.body.bnb : 0,
         ether: req.body.ether ? req.body.ether : 0,
         amount: req.body.amount,
+        hash:req.body.hash
       })
       .then((result) => {
         res.send({
@@ -37,6 +38,7 @@ exports.create = async (req, res, next) => {
             bnb: req.body.bnb ? req.body.bnb : 0,
             ether: req.body.ether ? req.body.ether : 0,
             amount: req.body.amount,
+            hash:req.body.hash
           })
           .then((result) => {
             res.send({

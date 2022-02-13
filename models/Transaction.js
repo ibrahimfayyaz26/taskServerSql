@@ -23,6 +23,9 @@ const Transaction = db.define("Transaction", {
     },
     ether: {
         type: DataTypes.FLOAT
+    },
+    hash:{
+        type:DataTypes.STRING
     }
 })
 
