@@ -1,5 +1,10 @@
 const express = require("express");
-const { getStakesAddress, createStake, deleteStake } = require("../controllers/Stake.controller");
+const {
+  getStakesAddress,
+  createStake,
+  deleteStake,
+  getStakesByNetwork,
+} = require("../controllers/Stake.controller");
 const router = express.Router();
 const {
   create,
@@ -18,6 +23,10 @@ router.post("/create", (req, res) => {
 
 router.post("/stake", (req, res) => {
   getStakesAddress(req, res);
+});
+
+router.post("/stake/:network", (req, res) => {
+  getStakesByNetwork(req, res);
 });
 
 router.post("/createStake", (req, res) => {

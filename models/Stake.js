@@ -21,7 +21,7 @@ const Stake = db.define("Stake", {
     type: DataTypes.INTEGER,
   },
   dollar: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.FLOAT,
   },
   network: {
     type: DataTypes.STRING,
