@@ -5,26 +5,25 @@ const db = require("./db/db");
 const auth = require("./middleware/auth");
 const morgan = require("morgan");
 require("dotenv/config");
-const {Models} = require("./models/Models");
-const {Routes} = require("./Routes/Routes");
+const { Models } = require("./models/Models");
+const { Routes } = require("./Routes/Routes");
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(auth());
 app.use(cors());
-app.options("*", cors())
+app.options("*", cors());
 
 //Error
-app.use(
-  function(err, req, res, next) {
-    if (err.name === "UnauthorizedError") {
-      // jwt authentication error
-      return res.status(401).json({
-        message: "The user is not authorized"
-      });
-    }
-  })
+app.use(function (err, req, res, next) {
+  if (err.name === "UnauthorizedError") {
+    // jwt authentication error
+    return res.status(401).json({
+      message: "The user is not authorized",
+    });
+  }
+});
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -45,10 +44,9 @@ app.use("/Profile", Routes.Profile);
 app.use("/Documents", Routes.Documents);
 app.use("/IdCard", Routes.IdCard);
 app.use("/Passport", Routes.Passport);
-app.use("/ResetPassword",Routes.ResetPassword)
-app.use("/Approve",Routes.Approve)
-app.use("/Wallet",Routes.Wallet)
-
+app.use("/ResetPassword", Routes.ResetPassword);
+app.use("/Approve", Routes.Approve);
+app.use("/Wallet", Routes.Wallet);
 
 // simple route
 app.get("/", (req, res) => {
